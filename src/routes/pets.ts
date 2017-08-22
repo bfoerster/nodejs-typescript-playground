@@ -2,7 +2,7 @@ const Joi = require('joi');
 import {Route} from './route';
 import {Pet} from '../model/Pet';
 
-let getAllPets: Route = {
+const getAllPets: Route = {
     method: 'GET',
     path: '/pets',
     config: {
@@ -15,7 +15,7 @@ let getAllPets: Route = {
     }
 };
 
-let getPet: Route = {
+const getPet: Route = {
     method: 'GET',
     path: '/pets/{id}',
     config: {
@@ -37,7 +37,7 @@ let getPet: Route = {
 };
 
 // curl -H "Content-Type: application/json" -X POST -d '{"name":"Waldi","category":"Dackel"}' http://localhost:8000/pets
-let postPet: Route = {
+const postPet: Route = {
     method: 'POST',
     path: '/pets',
     config: {
