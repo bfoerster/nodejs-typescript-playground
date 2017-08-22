@@ -1,1 +1,1 @@
-This is just a playground for node.js and the circuit breaker mechanism.
+This is just a playground for node.js and typescript.
