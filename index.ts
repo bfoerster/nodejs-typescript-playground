@@ -3,6 +3,7 @@ const Hapi = require('hapi');
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
+const mongoose = require('mongoose');
 
 const PetRoutes = require('./src/routes/pets');
 import {ServerConfig} from "./src/serverConfig";
@@ -36,3 +37,9 @@ server.register([
 });
 
 server.route(PetRoutes);
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/my_pets')
+    .then(() => console.log('Connection to database successful'));
+
+

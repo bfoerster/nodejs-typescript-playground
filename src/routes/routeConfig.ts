@@ -3,5 +3,5 @@ export interface RouteConfig {
     notes: string;
     tags: Array<string>;
     handler: (request: any, reply: any) => void;
-    validate: any;
+    validate?: any;
 }

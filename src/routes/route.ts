@@ -1,4 +1,4 @@
-import {RouteConfig} from "./routeConfig"
+import {RouteConfig} from './routeConfig';
 
 export interface Route {
     method: string;

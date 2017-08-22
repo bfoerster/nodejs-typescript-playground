@@ -1,5 +1,6 @@
 const Joi = require('joi');
 import {Route} from './route';
+import {Pet} from '../model/Pet';
 
 let getAllPets: Route = {
     method: 'GET',
@@ -8,9 +9,8 @@ let getAllPets: Route = {
         description: 'Get All Pets',
         notes: 'Returns a list including all pets available',
         tags: ['api'],
-        validate: {},
         handler: (request: any, reply: any) => {
-            return reply('All pets');
+            Pet.find().then(reply).catch(() => reply('error'));
         }
     }
 };
@@ -30,12 +30,29 @@ let getPet: Route = {
             }
         },
         handler: (request: any, reply: any) => {
-            return reply(`Pet with id ${request.params.id}`);
+            const petId = request.params.id;
+            Pet.findById(petId).then(reply).catch(() => reply('error'));
+        }
+    }
+};
+
+// curl -H "Content-Type: application/json" -X POST -d '{"name":"Waldi","category":"Dackel"}' http://localhost:8000/pets
+let postPet: Route = {
+    method: 'POST',
+    path: '/pets',
+    config: {
+        description: 'Saves A Pet',
+        notes: 'Saves given pet to database and returns it',
+        tags: ['api'],
+        handler: (request: any, reply: any) => {
+            const pet = new Pet(request.payload);
+            pet.save().then(reply).catch(() => reply('error'));
         }
     }
 };
 
 module.exports = [
     getAllPets,
-    getPet
+    getPet,
+    postPet
 ];
