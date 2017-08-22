@@ -44,6 +44,12 @@ const postPet: Route = {
         description: 'Saves A Pet',
         notes: 'Saves given pet to database and returns it',
         tags: ['api'],
+        validate: {
+            payload: Joi.object({
+                name: Joi.string().required(),
+                category: Joi.string()
+            })
+        },
         handler: (request: any, reply: any) => {
             const pet = new Pet(request.payload);
             pet.save().then(reply).catch(() => reply('error'));

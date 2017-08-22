@@ -39,7 +39,7 @@ server.register([
 server.route(PetRoutes);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/my_pets')
+mongoose.connect('mongodb://localhost:27017/my_pets', {useMongoClient: true})
     .then(() => console.log('Connection to database successful'));
 
 
